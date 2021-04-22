@@ -13,10 +13,10 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
+firebaseConfig.ts
 *.log
 log.txt
 npm-debug.log*
-firebaseConfig.ts
 /.idea
 /.ionic
 /.sass-cache
