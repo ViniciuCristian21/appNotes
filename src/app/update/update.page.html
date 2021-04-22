@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']" (click)="onSubmit()">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-title>Editar</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="content">
+  <form>
+    <ion-textarea rows="30" [(ngModel)]="notes.description" name="note" id="note"></ion-textarea>
+  </form>
+</div>
+</ion-content>

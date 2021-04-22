@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/update/new']">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let n of notes | async">
+    <div [routerLink]="['/update/edit/', n.id]">
+      <ion-label maxlength="5">
+        {{n.description}}
+      </ion-label>
+    </div>
+  </ion-item>
+</ion-content>

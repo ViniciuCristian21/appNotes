@@ -1,0 +1,16 @@
+.content{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url('/assets/images/background.svg');
+  background-repeat: repeat-y;
+}
+ion-textarea{
+ position: absolute;
+ width: 100%;
+ height: auto;
+ margin: 0;
+ padding: 0;
+ top: 0px;
+ left: 0px;
+}
