@@ -23,7 +23,12 @@ export class NoteService {
         })
       )
  }
-//  Adicionar ao banco
+
+ removeNote(id: string){ // Remover nota
+  this.notesCollection.doc<Note>(id).delete();
+ }
+
+ //  Adicionar ao banco
  addNotes(notes: Note){
   const { description } = notes;
 
