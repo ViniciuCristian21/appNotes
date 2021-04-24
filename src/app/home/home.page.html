@@ -19,7 +19,7 @@
         <ion-item>
           <div [routerLink]="['/update/edit/', n.id]">
             <ion-label>
-              <span [innerHTML]="n.description"></span>
+              <span [innerHTML]="n.description.substr(0,15)"></span>
             </ion-label>
           </div>
         </ion-item>
