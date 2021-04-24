@@ -13,11 +13,26 @@
 </ion-header>
 
 <ion-content>
-  <ion-item *ngFor="let n of notes | async">
-    <div [routerLink]="['/update/edit/', n.id]">
-      <ion-label maxlength="5">
-        {{n.description}}
-      </ion-label>
-    </div>
-  </ion-item>
+  <ion-grid>
+    <ion-row *ngFor="let n of notes | async">
+      <ion-col size="8">
+        <ion-item>
+          <div [routerLink]="['/update/edit/', n.id]">
+            <ion-label maxlength="5">
+              {{ n.description }}
+            </ion-label>
+          </div>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item class="buttons" lines="none">
+          <div class="button-delet" (click)="remove(n.id)">
+            <ion-button color="danger">
+              <ion-icon name="trash-bin-sharp"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

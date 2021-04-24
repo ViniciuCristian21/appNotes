@@ -1,6 +1,7 @@
 import { NoteService } from './../shared/note.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AlertService } from '../shared/alert.service';
 
 @Component({
   selector: 'app-home',
@@ -8,22 +9,27 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  hide: boolean;
-  disabled: string;
   notes: Observable<any[]>;
-  constructor(private notesService: NoteService) { }
+  constructor(private notesService: NoteService,
+              private alert:AlertService) { }
 
   ngOnInit() {
-    this.hide = false;
-    this.verifify();
     this.getAll();
   }
-  verifify(){
-    if(this.hide == true){
-      this.disabled = 'disable';
-    }
+
+  remove(id: string){
+    this.alert.showConfirmarExclusão("esta anotação", ()=> this.removeNote(id) );
   }
 
+  removeNote(id: string){
+    this.notesService.removeNote(id)
+    try {
+
+      this.getAll();
+    } catch (error) {
+      console.log("ERROR: " + error)
+    }
+  }
   getAll(){
     this.notes = this.notesService.getAll();
   }
