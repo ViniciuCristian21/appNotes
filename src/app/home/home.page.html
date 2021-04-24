@@ -18,8 +18,8 @@
       <ion-col size="8">
         <ion-item>
           <div [routerLink]="['/update/edit/', n.id]">
-            <ion-label maxlength="5">
-              {{ n.description }}
+            <ion-label>
+              <span [innerHTML]="n.description"></span>
             </ion-label>
           </div>
         </ion-item>
