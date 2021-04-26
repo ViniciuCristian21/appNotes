@@ -10,6 +10,7 @@ import { AlertService } from '../shared/alert.service';
 })
 export class HomePage implements OnInit {
   notes: Observable<any[]>;
+  confirm: boolean = false;
   constructor(private notesService: NoteService,
               private alert:AlertService) { }
 
@@ -30,7 +31,20 @@ export class HomePage implements OnInit {
       console.log("ERROR: " + error)
     }
   }
+
+  confirmData(){
+   const sub = this.notes.subscribe((data: any) =>{
+     sub.unsubscribe();
+     if(data == ""){
+      this.confirm = true;
+      console.log("vazio")
+    }else{
+      console.log('tudo ok')
+    }
+   })
+  }
   getAll(){
     this.notes = this.notesService.getAll();
+    this.confirmData();
   }
 }
