@@ -1,5 +1,14 @@
 # Bloco de notas (Note pad)
-- [x] fire base
+
+## Check list -
+- [x] FireBase
 - [x] HTML
 - [x] CSS
 - [x] TYPESCRIPT
+
+### Step by step
+
+- [x] create 
+- [x] read 
+- [x] update
+- [x] delete
