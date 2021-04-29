@@ -1,10 +1,15 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" [hidden]="hasChange">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Notas</ion-title>
     <ion-buttons slot="end">
+      <!-- Open search -->
+      <ion-button (click)="searchOpen()">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <!-- Add New notes -->
       <ion-button [routerLink]="['/update/new']">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
@@ -13,6 +18,12 @@
 </ion-header>
 
 <ion-content>
+  <div class="search" [hidden]="!hasChange">
+    <ion-searchbar name="search" [(ngModel)]="search" (ionChange)="getSearchAll()"></ion-searchbar>
+    <ion-button color="danger" (click)="searchClose()">
+      <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+    </ion-button>
+  </div>
   <!-- Skeleton screen -->
   <div *ngIf="confirm == true">
     <ion-item color="danger">

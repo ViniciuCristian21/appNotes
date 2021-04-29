@@ -47,7 +47,11 @@ export class UpdatePage implements OnInit {
         if(this.notes.description == null){
           console.log("Parametro  vazio")
         }else{
-          await this.notesService.addNotes(this.notes);
+          if(this.notes.description == "" || this.notes.description == " "){
+            return
+          }else{
+            await this.notesService.addNotes(this.notes);
+          }
         }
         // mensagem OK
         this.router.navigate(['/home/']);
