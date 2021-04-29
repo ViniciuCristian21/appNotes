@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: linear-gradient(90deg, rgba(133,130,186,1) 0%, rgba(27,27,152,1) 30%, rgba(0,168,255,1) 100%);
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -233,4 +233,9 @@
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+// fonte roboto
+:root{
+  --ion-font-family: 'Roboto', sans-serif;
 }

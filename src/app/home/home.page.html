@@ -1,10 +1,15 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" [hidden]="hasChange">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-title>Notas</ion-title>
     <ion-buttons slot="end">
+      <!-- Open search -->
+      <ion-button (click)="searchOpen()">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <!-- Add New notes -->
       <ion-button [routerLink]="['/update/new']">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
@@ -13,13 +18,90 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <div class="search" [hidden]="!hasChange">
+    <ion-searchbar name="search" [(ngModel)]="search" (ionChange)="getSearchAll()"></ion-searchbar>
+    <ion-button color="danger" (click)="searchClose()">
+      <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+    </ion-button>
+  </div>
+  <!-- Skeleton screen -->
+  <div *ngIf="confirm == true">
+    <ion-item color="danger">
+      <div class="">
+        Sem conexao com banco de dados
+      </div>
+    </ion-item>
+
+    <div class="ion-padding custom-skeleton">
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </div>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <!-- Conteudo -->
+  <ion-grid *ngIf="notes">
     <ion-row *ngFor="let n of notes | async">
       <ion-col size="8">
         <ion-item>
           <div [routerLink]="['/update/edit/', n.id]">
-            <ion-label maxlength="5">
-              {{ n.description }}
+            <ion-label>
+              <span [innerHTML]="n.description.substr(0,15)"></span>
             </ion-label>
           </div>
         </ion-item>

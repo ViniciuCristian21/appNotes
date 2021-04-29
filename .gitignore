@@ -17,6 +17,11 @@ firebaseConfig.ts
 *.log
 log.txt
 npm-debug.log*
+<<<<<<< HEAD
+=======
+
+/android
+>>>>>>> dev
 /.idea
 /.ionic
 /.sass-cache

@@ -3,7 +3,7 @@
   height: 100%;
   position: absolute;
   background-image: url('/assets/images/background.svg');
-  background-repeat: repeat-y;
+  background-repeat: repeat;
 }
 ion-textarea{
  position: absolute;
@@ -13,4 +13,5 @@ ion-textarea{
  padding: 0;
  top: 0px;
  left: 0px;
+ font-size: 1.5rem;
 }
