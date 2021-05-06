@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyD7TIdzJ-d8dpnNNVYeZ0JWD6fG9Z881JA",
-    authDomain: "applibrass.firebaseapp.com",
-    projectId: "applibrass",
-    storageBucket: "applibrass.appspot.com",
-    messagingSenderId: "85201740256",
-    appId: "1:85201740256:web:6e9c72691bfc3ac64fcb85"
+  apiKey: "AIzaSyDwefyqObJQ2kXtsxYcnTUMBXIw2CLYYdE",
+  authDomain: "appnotes-938f6.firebaseapp.com",
+  projectId: "appnotes-938f6",
+  storageBucket: "appnotes-938f6.appspot.com",
+  messagingSenderId: "358554932005",
+  appId: "1:358554932005:web:cbbaca06f10370d17c80cc"
 }
