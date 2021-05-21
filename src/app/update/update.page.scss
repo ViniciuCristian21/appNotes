@@ -1,6 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 .content{
-  width: 100%;
-  height: 100%;
+  width: 120vw;
+  height: 120vh;
   position: absolute;
   background-image: url('/assets/images/background.svg');
   background-repeat: repeat;
@@ -15,3 +21,4 @@ ion-textarea{
  left: 0px;
  font-size: 1.5rem;
 }
+
