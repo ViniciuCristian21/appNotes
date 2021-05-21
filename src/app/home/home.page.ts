@@ -1,9 +1,7 @@
-import { element } from 'protractor';
 import { NoteService } from './../shared/note.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlertService } from '../shared/alert.service';
-import { IonSearchbar } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
