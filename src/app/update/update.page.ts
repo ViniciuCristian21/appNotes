@@ -1,3 +1,4 @@
+import { ToastService } from './../shared/toast.service';
 import { NoteService } from './../shared/note.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +14,8 @@ export class UpdatePage implements OnInit {
   notesId: string;
   constructor(private router: Router,
               private notesService: NoteService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private toastservice: ToastService) { }
 
   ngOnInit() {
     this.notes = new Note;
@@ -38,6 +40,7 @@ export class UpdatePage implements OnInit {
         await this.notesService.updateNotes(this.notes, this.notesId);
         // mensagem OK
         this.router.navigate(['/home/']);
+        this.toastservice.savedSucessToast('primary', 'Editado com sucesso');
       } catch (error) {
         // mensagem error
         console.log(error);
@@ -55,6 +58,8 @@ export class UpdatePage implements OnInit {
         }
         // mensagem OK
         this.router.navigate(['/home/']);
+        this.toastservice.savedSucessToast('success','Salvo com sucesso');
+
       } catch (error) {
         // mensagem error
         console.log(error);
