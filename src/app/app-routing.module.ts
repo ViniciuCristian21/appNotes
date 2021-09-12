@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'update/edit/:id',
     loadChildren: () => import('./update/update.module').then( m => m.UpdatePageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
+
 ];
 
 @NgModule({

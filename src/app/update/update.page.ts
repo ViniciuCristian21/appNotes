@@ -18,7 +18,7 @@ export class UpdatePage implements OnInit {
               private toastservice: ToastService) { }
 
   ngOnInit() {
-    this.notes = new Note;
+    this.notes = new Note();
     this.notesId = this.activatedRoute.snapshot.params['id'];
     this.getById();
   }
@@ -40,7 +40,9 @@ export class UpdatePage implements OnInit {
         await this.notesService.updateNotes(this.notes, this.notesId);
         // mensagem OK
         this.router.navigate(['/home/']);
-        this.toastservice.savedSucessToast('primary', 'Editado com sucesso');
+        if (this.notes) {
+          this.toastservice.savedSucessToast('primary', 'Editado com sucesso');
+        }
       } catch (error) {
         // mensagem error
         console.log(error);
@@ -48,18 +50,16 @@ export class UpdatePage implements OnInit {
     } else{
       try {
         if(this.notes.description == null){
-          console.log("Parametro  vazio")
+          console.log('Parametro  vazio');
         }else{
           if(this.notes.description == "" || this.notes.description == " "){
-            return
+            return;
           }else{
             await this.notesService.addNotes(this.notes);
+            await this.toastservice.savedSucessToast('success','Salvo com sucesso');
           }
         }
-        // mensagem OK
         this.router.navigate(['/home/']);
-        this.toastservice.savedSucessToast('success','Salvo com sucesso');
-
       } catch (error) {
         // mensagem error
         console.log(error);
