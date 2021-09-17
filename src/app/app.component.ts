@@ -1,3 +1,4 @@
+import { LoginService } from './login/shared/login.service';
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
@@ -6,12 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'configurações', url: '/home/', icon: 'cog' },
+    { title: 'Inicio', url: '/home/', icon: 'cog' },
     { title: 'Login', url: '/login', icon: 'paper-plane' },
     // { title: 'Editar', url: '/update', icon: 'heart' },
     // { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
     // { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
     // { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
-  constructor() {}
+  constructor(private loginService: LoginService) {}
+  logout(){
+    this.loginService.logout();
+  }
 }

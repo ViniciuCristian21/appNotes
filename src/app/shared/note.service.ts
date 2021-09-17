@@ -46,4 +46,18 @@ export class NoteService {
   updateNotes(notes: Note, id: string){
     this.notesCollection.doc<Note>(id).update(Object.assign({}, notes));
   }
+
+  // Pesquisa filtrada
+  searchAll(key: string){
+    return this.afs.collection('notes', ref => ref.orderBy('description').startAt(key).endAt(key + "\uf8ff"))
+    .snapshotChanges().pipe(
+      map( changes => {
+        return changes.map( p => {
+          const id = p.payload.doc.id;
+          const data = p.payload.doc.data() as Note;
+          return {id, ...data};
+        })
+      })
+    )
+  }
 }

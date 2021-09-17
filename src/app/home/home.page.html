@@ -19,7 +19,7 @@
 
 <ion-content>
   <div class="search" [hidden]="!hasChange">
-    <ion-searchbar name="search" [(ngModel)]="search" (ionChange)="getSearchAll()"></ion-searchbar>
+    <ion-searchbar name="search" [(ngModel)]="search" (ionChange)="getSearchAll($event)"></ion-searchbar>
     <ion-button color="danger" (click)="searchClose()">
       <ion-icon slot="icon-only" name="close-outline"></ion-icon>
     </ion-button>
@@ -95,7 +95,7 @@
     </ion-list>
   </div>
   <!-- Conteudo -->
-  <ion-grid *ngIf="notes">
+  <ion-grid *ngIf="notes && hasChange === false">
     <ion-row *ngFor="let n of notes | async">
       <ion-col size="8">
         <ion-item>
@@ -109,6 +109,29 @@
       <ion-col size="4">
         <ion-item class="buttons" lines="none">
           <div class="button-delet" (click)="remove(n.id)">
+            <ion-button color="danger">
+              <ion-icon name="trash-bin-sharp"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Search  -->
+  <ion-grid *ngIf="hasChange === true">
+    <ion-row *ngFor="let ns of dataSearch | async">
+      <ion-col size="8">
+        <ion-item>
+          <div [routerLink]="['/update/edit/', ns.id]">
+            <ion-label>
+              <span>{{ ns.description }}</span>
+            </ion-label>
+          </div>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item class="buttons" lines="none">
+          <div class="button-delet" (click)="remove(ns.id)">
             <ion-button color="danger">
               <ion-icon name="trash-bin-sharp"></ion-icon>
             </ion-button>

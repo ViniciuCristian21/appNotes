@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   hasChange: boolean = false;
   search: string;
   fileterData: any[] = [];
+  dataSearch: Observable<any[]>;
   constructor(private notesService: NoteService,
               private alert:AlertService) { }
 
@@ -46,9 +47,19 @@ export class HomePage implements OnInit {
     }
    })
   }
-  getSearchAll(){
-    this.search.length.toString();
-    console.log(this.search)
+  async getSearchAll(event){
+    let key = event.target.value;
+    let lowerCaseKey = key.toLowerCase();
+
+    if (lowerCaseKey.length > 0) {
+      this.dataSearch = undefined;
+      try {
+        this.dataSearch = await this.notesService.searchAll(lowerCaseKey)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    console.log(this.dataSearch)
   }
   searchOpen(){ //Abrir a pesquisa
     console.log("Abriu")
@@ -58,6 +69,7 @@ export class HomePage implements OnInit {
     console.log("Fechou")
     this.hasChange = false;
     this.search = "";
+    this.dataSearch = undefined;
   }
   getAll(){
     this.notes = this.notesService.getAll();

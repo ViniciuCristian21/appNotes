@@ -8,16 +8,16 @@
 <ion-content>
   <ion-label><h1 class="ion-text-center">Login</h1></ion-label>
   <ion-item>
-    <ion-label position="stacked">User</ion-label>
-    <ion-input name="email" type="email"></ion-input>
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input name="email" type="email" [(ngModel)]="users.email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Senha</ion-label>
-    <ion-input name="password" type="text"></ion-input>
+    <ion-input name="password" type="text" [(ngModel)]="users.password"></ion-input>
   </ion-item>
 
   <div class="btn">
-    <ion-button expand="block">Entrar</ion-button>
+    <ion-button expand="block" (click)="login()">Entrar</ion-button>
   </div>
 </ion-content>
