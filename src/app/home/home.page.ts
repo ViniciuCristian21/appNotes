@@ -15,11 +15,22 @@ export class HomePage implements OnInit {
   search: string;
   fileterData: any[] = [];
   dataSearch: Observable<any[]>;
+  data: any[] = [];
   constructor(private notesService: NoteService,
               private alert:AlertService) { }
 
   ngOnInit() {
     this.getAll();
+  }
+  getAll(){
+    try {
+      this.notes = this.notesService.getAll();
+    } catch (err) {
+      console.log(err)
+    }
+  }
+ ionViewWillEnter(){
+    this.confirmData();
   }
 
   remove(id: string){
@@ -29,32 +40,27 @@ export class HomePage implements OnInit {
   removeNote(id: string){
     this.notesService.removeNote(id)
     try {
-
       this.getAll();
     } catch (error) {
       console.log("ERROR: " + error)
     }
   }
 
-  confirmData(){
-   const sub = this.notes.subscribe((data: any) =>{
-     sub.unsubscribe();
-     if(data == ""){
-      this.confirm = true;
-      console.log("vazio")
-    }else{
-      console.log('tudo ok')
-    }
-   })
+  async confirmData(){
+    await this.notes.forEach( (item)=> {
+      this.data = item;
+    })
+    this.confirm = this.data.length === 0 ? true : false;
+    console.log(this.confirm)
   }
   async getSearchAll(event){
     let key = event.target.value;
-    let lowerCaseKey = key.toLowerCase();
+    // let lowerCaseKey = key.toLowerCase();
 
-    if (lowerCaseKey.length > 0) {
+    if (key.length > 0) {
       this.dataSearch = undefined;
       try {
-        this.dataSearch = await this.notesService.searchAll(lowerCaseKey)
+        this.dataSearch = await this.notesService.searchAll(key)
       } catch (err) {
         console.log(err)
       }
@@ -70,9 +76,5 @@ export class HomePage implements OnInit {
     this.hasChange = false;
     this.search = "";
     this.dataSearch = undefined;
-  }
-  getAll(){
-    this.notes = this.notesService.getAll();
-    this.confirmData();
   }
 }
