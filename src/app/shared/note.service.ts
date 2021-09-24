@@ -28,6 +28,15 @@ export class NoteService {
   this.notesCollection.doc<Note>(id).delete();
  }
 
+ dateNew(){
+  const data = new Date();
+  const day = data.getDate()
+  const month = data.getMonth() + 1;
+  const year = data.getUTCFullYear();
+
+  return day+"/"+month+"/"+year
+ }
+
  //  Adicionar ao banco
  addNotes(notes: Note){
   const { description } = notes;
@@ -35,6 +44,7 @@ export class NoteService {
   this.afs.collection('notes').doc().set(
     {
       description: description,
+      date: this.dateNew()
     }
   );
 }

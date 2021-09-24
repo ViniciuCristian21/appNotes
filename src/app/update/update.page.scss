@@ -1,24 +1,20 @@
-*{
+ion-content {
+  border: 0;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   overflow: hidden;
 }
-.content{
-  width: 120vw;
-  height: 120vh;
-  position: absolute;
-  background-image: url('/assets/images/background.svg');
-  background-repeat: repeat;
-}
-ion-textarea{
- position: absolute;
- width: 100%;
- height: auto;
- margin: 0;
- padding: 0;
- top: 0px;
- left: 0px;
- font-size: 1.5rem;
+.content {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  ion-textarea {
+    background: rgba(0, 0, 0, 0.4);
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 1.5rem;
+    overflow: hidden;
+  }
 }
 

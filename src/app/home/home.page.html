@@ -9,10 +9,6 @@
       <ion-button (click)="searchOpen()">
         <ion-icon slot="icon-only" name="search-outline"></ion-icon>
       </ion-button>
-      <!-- Add New notes -->
-      <ion-button [routerLink]="['/update/new']">
-        <ion-icon name="add-circle-outline"></ion-icon>
-      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -33,7 +29,7 @@
     </ion-item>
   </div>
   <!-- Conteudo -->
-  <ion-grid *ngIf="notes && hasChange === false">
+  <!-- <ion-grid *ngIf="notes && hasChange === false">
     <ion-row *ngFor="let n of notes | async">
       <ion-col size="8">
         <ion-item>
@@ -54,9 +50,41 @@
         </ion-item>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+
+  <div class="main" *ngIf="notes && hasChange === false">
+    <ion-button expand="full" color="success" [routerLink]="['/update/new']">Adicionar Notas</ion-button>
+    <ion-card *ngFor="let n of notes | async">
+      <ion-card-header>
+        <ion-chip color="primary">
+          <ion-label>{{ n.date }}</ion-label>
+        </ion-chip>
+      </ion-card-header>
+      <ion-item>
+        <ion-icon name="close" slot="end" color="danger" (click)="remove(n.id)"></ion-icon>
+        <ion-icon name="create" slot="end" color="primary" [routerLink]="['/update/edit/', n.id]"></ion-icon>
+        <ion-label [innerHTML]="n.description.substr(0,15)"></ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
   <!-- Search  -->
-  <ion-grid *ngIf="hasChange === true">
+
+  <div class="main" *ngIf="hasChange === true">
+    <ion-card *ngFor="let ns of dataSearch | async">
+      <ion-card-header>
+        <ion-chip color="primary">
+          <ion-label>{{ ns.date }}</ion-label>
+        </ion-chip>
+      </ion-card-header>
+      <ion-item>
+        <ion-icon name="close" slot="end" color="danger" (click)="remove(ns.id)"></ion-icon>
+        <ion-icon name="create" slot="end" color="primary" [routerLink]="['/update/edit/', ns.id]"></ion-icon>
+        <ion-label [innerHTML]="ns.description.substr(0,15)"></ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <!-- <ion-grid *ngIf="hasChange === true">
     <ion-row *ngFor="let ns of dataSearch | async">
       <ion-col size="8">
         <ion-item>
@@ -77,5 +105,5 @@
         </ion-item>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>
